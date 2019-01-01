@@ -9,10 +9,12 @@ import { UserComponent } from './users/user/user.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
 import { Routes, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
+import { ServerComponent } from './servers/server/server.component';
 
 const appRoute: Routes = [
   { path: '', component: HomeComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'users/:id/:name', component: UserComponent },
   { path: 'servers', component: ServersComponent },
 
 ];
@@ -24,6 +26,7 @@ const appRoute: Routes = [
     UsersComponent,
     UserComponent,
     EditServerComponent,
+    ServerComponent
   ],
   imports: [
     BrowserModule,

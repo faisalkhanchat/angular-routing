@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-servers',
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-
-  constructor() { }
+  servers = [
+    { name: 'Production Server' },
+    { name: 'Test Server' },
+    { name: 'Dev Server' },
+  ];
+  constructor(
+    public router: Router,
+    public route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
+  }
+  onReload() {
+    // relative to routing
+    this.router.navigate(['/servers'], {relativeTo: this.route});
   }
 
 }
