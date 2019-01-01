@@ -28,6 +28,7 @@ export class UserComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // routing observables
     this.paramSubscription.unsubscribe();
+
   }
 
 }
