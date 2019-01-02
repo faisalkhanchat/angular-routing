@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ServersService } from './servers.service';
 
 @Component({
   selector: 'app-servers',
@@ -7,17 +8,15 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./servers.component.css']
 })
 export class ServersComponent implements OnInit {
-  servers = [
-    { name: 'Production Server' },
-    { name: 'Test Server' },
-    { name: 'Dev Server' },
-  ];
+  private servers: any;
   constructor(
     public router: Router,
+    private serverService: ServersService,
     public route: ActivatedRoute
     ) { }
 
   ngOnInit() {
+    this.servers = this.serverService.getServers();
   }
   onReload() {
     // relative to routing
