@@ -11,24 +11,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { ServerComponent } from './servers/server/server.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AppRoutingModule } from './app.routing.module';
+import { ServersService } from './servers/servers.service';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth.guard';
 
-const appRoute: Routes = [
-  { path: '', component: HomeComponent },
-  {
-    path: 'users', component: UsersComponent, children: [
-      { path: ':id/:name', component: UserComponent },
-    ]
-  },
-  {
-    path: 'servers', component: ServersComponent, children: [
-      { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent },
-    ]
-  },
-  { path: 'not-found', component: PageNotFoundComponent },
-  { path: '**', redirectTo: '/not-found' }
 
-];
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,10 +30,10 @@ const appRoute: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoute),
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [ServersService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
