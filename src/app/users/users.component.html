@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
-      <a [routerLink]="['/servers', user.id, user.name]"
+      <a [routerLink]="['/users', user.id, user.name]"
       [queryParams]="{allowEdit : '1'}"
       fragment="Loading"
       routerLinkActive="router-link-active"  class="list-group-item" *ngFor="let user of users">
@@ -10,8 +10,6 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <!-- <button class="btn btn-primary" (click)="onReload()">Load Server</button> -->
-    <br>
-    <app-user></app-user>
+    <router-outlet></router-outlet>
   </div>
 </div>
