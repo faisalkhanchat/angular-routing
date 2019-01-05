@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ServerComponent } from './servers/server/server.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthGuard } from './auth.guard';
+import { CanDeactivateGaurd } from './page-not-found/can-deactivate-gaurd.service';
 const appRoute: Routes = [
   { path: '', component: HomeComponent },
   {
@@ -16,9 +17,13 @@ const appRoute: Routes = [
     ]
   },
   {
-    path: 'servers', component: ServersComponent, canActivate: [AuthGuard], children: [
+    path: 'servers',
+    component: ServersComponent,
+    // canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [
       { path: ':id', component: ServerComponent },
-      { path: ':id/edit', component: EditServerComponent },
+      { path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGaurd] },
     ]
   },
   { path: 'not-found', component: PageNotFoundComponent },
